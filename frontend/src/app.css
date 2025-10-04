@@ -1,0 +1,25 @@
+#launch_options {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 200px;
+}
+
+button {
+    width: auto;
+    color: white;
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: royalblue;
+}
+
+input[type="text"] {
+    border-style: solid;
+    border-radius: 4px;
+    border-color: dodgerblue;
+}
