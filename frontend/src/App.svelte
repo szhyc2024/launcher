@@ -23,12 +23,15 @@
   </div>
   <div>
     <button onclick={() => select_file().then((value) => java_path=value)}>选择java.exe路径</button>
+    {java_path}
   </div>
   <div>
     <button onclick={() => select_folder().then((value) => minecraft_path=value)}>选择minecraft文件夹路径</button>
+    {minecraft_path}
   </div>
   <div>
     <button onclick={() => select_folder().then((value) => version_path=value)}>选择版本内路径</button>
+    {version_path}
   </div>
   <div>
     是否版本隔离<input bind:checked={isolation} type="checkbox" />
