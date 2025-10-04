@@ -1,6 +1,8 @@
 import webview
 import mmcll
 import subprocess
+import json
+import os
 index_path = "./frontend/dist/index.html"
 
 class Api:
@@ -32,7 +34,24 @@ class Api:
         except Exception as e:
             print("错误", e)
             return ""
+    
+    def save_data(self, data):
+        with open('launcher_config.json', 'w') as file:
+            json.dump(data, file)
+    
+    def load_data(self):
+        if not os.path.isfile('launcher_config.json'):
+            return {
+                "username": "",
+                "java_path": "",
+                "minecraft_path": "",
+                "version_path": "",
+                "isolation": False,
+            }
+        with open('launcher_config.json', 'r') as file:
+            data = json.load(file)
+        return data
 
 
-webview.create_window("启动器", height=400, width=800, url=index_path, js_api=Api())
+webview.create_window("启动器", height=300, width=800, url=index_path, js_api=Api())
 webview.start(debug=True)
