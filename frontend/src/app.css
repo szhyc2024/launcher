@@ -5,9 +5,10 @@
     max-width: 50%;
 }
 
-.path-group {
+.flex-group {
     display: flex;
     max-width: 100%;
+    gap: 20px;
 }
 
 button {

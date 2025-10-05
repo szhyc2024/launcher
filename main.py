@@ -3,9 +3,17 @@ import mmcll
 import subprocess
 import json
 import os
+import DownloadKit
+import time
+import math
+
 index_path = "./frontend/dist/index.html"
+download_kit = DownloadKit.DownloadKit()
 
 class Api:
+    def __init__(self):
+        self.download_progress = 0
+
     def launch_game(self, username, java_path, minecraft_path, version_path, isolation):
         game_path = version_path if isolation else minecraft_path
         uuid = mmcll.MainClass.generate_bukkit_uuid(username)
@@ -51,7 +59,19 @@ class Api:
         with open('launcher_config.json', 'r') as file:
             data = json.load(file)
         return data
+    
+    def download_file(self, url, path):
+        misson = download_kit.add(file_url=url, save_path=path)
+        self.download_progress = 0
+        while self.download_progress != 100:
+            if misson.rate is None:
+                self.download_progress = 0
+            else:
+                self.download_progress = math.floor(misson.rate)
+            time.sleep(0.1)
+    
+    def query_progress(self):
+        return self.download_progress
 
-
-webview.create_window("启动器", height=300, width=800, url=index_path, js_api=Api())
+win = webview.create_window("启动器", height=300, width=800, url=index_path, js_api=Api())
 webview.start(debug=True)

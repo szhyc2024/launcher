@@ -42,15 +42,15 @@
   <div>
     用户名<input bind:value={configs.username} type="text" placeholder="用户名" />
   </div>
-  <div class="path-group">
+  <div class="flex-group">
     <button onclick={() => select_file((value: string) => configs.java_path=value)}>选择java.exe路径</button>
     <span class="ellipsis" title={configs.java_path}>{configs.java_path}</span>
   </div>
-  <div class="path-group">
+  <div class="flex-group">
     <button onclick={() => select_folder((value: string) => configs.minecraft_path=value)}>选择minecraft文件夹路径</button>
     <span class="ellipsis" title={configs.minecraft_path}>{configs.minecraft_path}</span>
   </div>
-  <div class="path-group">
+  <div class="flex-group">
     <button onclick={() => select_folder((value: string) => configs.version_path=value)}>选择版本内路径</button>
     <span class="ellipsis" title={configs.version_path}>{configs.version_path}</span>
   </div>
