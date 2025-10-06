@@ -15,6 +15,7 @@
   function progress_callback(){
     pywebview.api.query_progress().then((val) => progress = val)
     if(progress == 100){
+      progress = 0
       return
     }
     setTimeout(progress_callback, 100)
