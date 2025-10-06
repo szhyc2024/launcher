@@ -1,2 +1,3 @@
 logs
+__pycache__
 launcher_config.json
