@@ -74,4 +74,4 @@ class Api:
         return self.download_progress
 
 win = webview.create_window("启动器", height=300, width=800, url=index_path, js_api=Api())
-webview.start(debug=True)
+webview.start(debug=True, gui='gtk')
