@@ -1,41 +1,6 @@
-#launch_options {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 50%;
-}
-
-.flex-group {
-    display: flex;
-    max-width: 100%;
-    gap: 20px;
-}
-
-button {
-    width: fit-content;
-    color: white;
-    background-color: dodgerblue;
-    border: none;
-    border-radius: 4px;
-}
-
-button:hover {
-    background-color: royalblue;
-}
-
-button:disabled {
-    background-color: lightblue;
-}
-
-input[type="text"] {
-    border-style: solid;
-    border-radius: 4px;
-    border-color: dodgerblue;
-}
-
 .ellipsis {
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }

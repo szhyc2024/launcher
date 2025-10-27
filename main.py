@@ -12,16 +12,20 @@ download_kit = DownloadKit.DownloadKit()
 
 class Api:
     def __init__(self):
+        self.is_launching = False
         self.download_progress = 0
 
     def launch_game(self, username, java_path, minecraft_path, version_path, isolation):
+        if self.is_launching:
+            return False, -1
+        self.is_launching = True
         game_path = version_path if isolation else minecraft_path
         uuid = mmcll.MainClass.generate_bukkit_uuid(username)
         account = mmcll.LaunchAccount.new_offline(username, uuid)
         option = mmcll.LaunchOption(account, java_path, minecraft_path, version_path, game_path)
         launch = mmcll.launch_game(option, subprocess.run)
-        print(java_path, minecraft_path, version_path)
-        return launch
+        self.is_launching = False
+        return True, launch
     
     def select_file(self):
         try:
@@ -73,5 +77,5 @@ class Api:
     def query_progress(self):
         return self.download_progress
 
-win = webview.create_window("启动器", height=300, width=800, url=index_path, js_api=Api())
+win = webview.create_window("启动器", height=450, width=700, url=index_path, js_api=Api())
 webview.start(debug=True, gui='gtk')

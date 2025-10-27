@@ -13,7 +13,7 @@
     setTimeout(progress_callback, 100)
   }
   function progress_callback(){
-    pywebview.api.query_progress().then((val) => progress = val)
+    pywebview.api.query_progress().then((val: number) => progress = val)
     if(progress == 100){
       progress = 0
       return
@@ -24,14 +24,19 @@
     return pywebview.api.select_folder().then(func)
   }
 </script>
-<div id="downloader">
-  <div class="flex-group">
-    <button onclick={() => select_folder((value: string) => file_path=value)}>选择下载位置</button>
+<div id="downloader" class="card py-3 grid" style="width: fit-content;">
+  <div class="row mx-auto my-2">
+    <button class="btn btn-primary" onclick={() => select_folder((value: string) => file_path=value)}>选择下载位置</button>
     <span class="ellipsis" title={file_path}>{file_path}</span>
   </div>
-  <div>
-    下载URL<input bind:value={url} type="text" placeholder="URL" />
+  <div class="mx-auto px-3 my-2 input-group">
+    <span class="input-group-text">下载URL</span>
+    <input class="form-control" bind:value={url} type="text" placeholder="URL" />
   </div>
-  <progress max="100" value={progress.toString()}></progress>
-  <button onclick={() => download_file(url, file_path)} disabled={progress!=100&&progress!=0}>开始下载</button>
+  <div class="m-3 progress">
+    <div class="progress-bar" style:width={progress.toString()+"%"}></div>
+  </div>
+  <div class="mx-auto my-2">
+    <button class="btn btn-primary" onclick={() => download_file(url, file_path)} disabled={progress!=100 && progress!=0}>开始下载</button>
+  </div>
 </div>
